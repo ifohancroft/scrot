@@ -353,29 +353,24 @@ void optionsParse(int argc, char** argv)
 
 char* nameThumbnail(char* name)
 {
-    warnx("name: %s", name);
     size_t length = 0;
     char* newTitle;
     char* dotPos;
     size_t diff = 0;
 
-    warnx("strlen(name): %u", strlen(name));
-    length = strlen(name) + 7;
+    //length = strlen(name) + 7;
+    length = strlen(name);
     newTitle = malloc(length);
-    warnx("length: %u", strlen(name) + 7);
+    warnx("newTitle: %s", newTitle);
 
     if (!newTitle)
         err(EXIT_FAILURE, "Unable to allocate thumbnail");
 
     dotPos = strrchr(name, '.');
-    warnx("dotPos: %s", dotPos);
     if (dotPos) {
         diff = (dotPos - name) / sizeof(char);
-        warnx("diff: %u", diff);
 
-        warnx("newTitle: %s", newTitle);
-        strlcpy(newTitle, name, diff);
-        warnx("newTitle after strncpy: %s", newTitle);
+        strncpy(newTitle, name, diff);
         strcat(newTitle, "-thumb");
         strcat(newTitle, dotPos);
     } else
