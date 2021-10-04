@@ -358,21 +358,29 @@ char* nameThumbnail(char* name)
     char* dotPos;
     size_t diff = 0;
 
-    //length = strlen(name) + 7;
-    length = strlen(name) + 2;
+    warnx("name: %s", name);
+    warnx("name length: %u", strlen(name));
+    warnx("reserved space: %u", strlen(name) + 7);
+
+    length = strlen(name) + 7;
     newTitle = malloc(length);
-    warnx("newTitle: %s", newTitle);
 
     if (!newTitle)
         err(EXIT_FAILURE, "Unable to allocate thumbnail");
 
     dotPos = strrchr(name, '.');
     if (dotPos) {
+        warnx("dotPos: %s", dotPos);
         diff = (dotPos - name) / sizeof(char);
+        warnx("diff: %u", diff);
 
+        warnx("newTitle: %s", newTitle);
         strncpy(newTitle, name, diff);
+        warnx("newTitle + diff length of name: %s", newTitle);
         strcat(newTitle, "-thumb");
+        warnx("newTitle + -thumb: %s", newTitle);
         strcat(newTitle, dotPos);
+        warnx("newTitle + dotPos: %s", newTitle);
     } else
         snprintf(newTitle, length, "%s-thumb", name);
 
