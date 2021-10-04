@@ -368,7 +368,7 @@ char* nameThumbnail(char* name)
     if (dotPos) {
         diff = (dotPos - name) / sizeof(char);
 
-        strncpy(newTitle, name, diff);
+        strlcpy(newTitle, name, diff);
         strcat(newTitle, "-thumb");
         strcat(newTitle, dotPos);
     } else
