@@ -375,7 +375,7 @@ char* nameThumbnail(char* name)
         warnx("diff: %u", diff);
 
         warnx("newTitle: %s", newTitle);
-        strncpy(newTitle, name, diff);
+        strlcpy(newTitle, name, diff);
         warnx("newTitle + diff length of name: %s", newTitle);
         strcat(newTitle, "-thumb");
         warnx("newTitle + -thumb: %s", newTitle);
