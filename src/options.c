@@ -359,7 +359,7 @@ char* nameThumbnail(char* name)
     size_t diff = 0;
 
     //length = strlen(name) + 7;
-    length = strlen(name);
+    length = strlen(name) + 1;
     newTitle = malloc(length);
     warnx("newTitle: %s", newTitle);
 
