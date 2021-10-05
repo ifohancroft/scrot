@@ -353,38 +353,34 @@ void optionsParse(int argc, char** argv)
 
 char* nameThumbnail(char* name)
 {
-    size_t length = 0;
-    char* newTitle;
-    char* dotPos;
-    size_t diff = 0;
+    char* extension;
+    const char* thumbPrefix = "-thumb";
+    char* newName;
+    size_t nameLength = 0;
+    size_t extensionLegnth = 0;
+    size_t fullLength = 0;
+    const size_t thumbPrefixLength = "7";
+    size_t newNameLength = 0;
 
-    warnx("name: %s", name);
-    warnx("name length: %u", strlen(name));
-    warnx("reserved space: %u", strlen(name) + 7);
+    fullLength = strlen(name);
+    newNameLength = fullLength + thumbPrefixLength;
+    newName = malloc(newNameLength);
 
-    length = strlen(name) + 7;
-    newTitle = malloc(length);
-
-    if (!newTitle)
+    if (!newName)
         err(EXIT_FAILURE, "Unable to allocate thumbnail");
 
-    dotPos = strrchr(name, '.');
-    if (dotPos) {
-        warnx("dotPos: %s", dotPos);
-        diff = (dotPos - name) / sizeof(char);
-        warnx("diff: %u", diff);
+    extension = strrchr(name, '.');
+    if (extension) {
+        nameLength = (extension - name) / sizeof(char);
+        extensionLength = fullLength - nameLength;
 
-        warnx("newTitle: %s", newTitle);
-        strlcpy(newTitle, name, diff);
-        warnx("newTitle + diff length of name: %s", newTitle);
-        strlcat(newTitle, "-thumb");
-        warnx("newTitle + -thumb: %s", newTitle);
-        strlcat(newTitle, dotPos);
-        warnx("newTitle + dotPos: %s", newTitle);
+        strlcpy(newName, name, nameLength);
+        strlcat(newName, thumbPrefix, thumbPrefixLength);
+        strlcat(newName, extension, extensionLength);
     } else
-        snprintf(newTitle, length, "%s-thumb", name);
+        snprintf(newName, newNameLength, "%s-thumb", name);
 
-    return newTitle;
+    return newName;
 }
 
 
