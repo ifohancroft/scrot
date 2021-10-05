@@ -372,14 +372,8 @@ char* nameThumbnail(char* name)
         err(EXIT_FAILURE, "Unable to allocate thumbnail");
 
     extension = strrchr(name, '.');
-    if (extension) {
-        nameLength = (extension - name) / sizeof(char) + 1;
 
-        strlcpy(newName, name, nameLength);
-        strlcat(newName, thumbSuffix, newNameLength);
-        strlcat(newName, extension, newNameLength);
-    } else
-        snprintf(newName, newNameLength, "%s%s", name, thumbSuffix);
+    snprintf(newName, newNameLength, "%s%s%s", name, thumbSuffix, extension ? extension : "");
 
     return newName;
 }
