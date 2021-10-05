@@ -357,7 +357,7 @@ char* nameThumbnail(char* name)
     const char* thumbPrefix = "-thumb";
     char* newName;
     size_t nameLength = 0;
-    size_t extensionLegnth = 0;
+    size_t extensionLength = 0;
     size_t fullLength = 0;
     const size_t thumbPrefixLength = "7";
     size_t newNameLength = 0;
