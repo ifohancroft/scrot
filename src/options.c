@@ -347,6 +347,9 @@ void optionsParse(int argc, char** argv)
             warnx("unrecognised option %s", argv[optind++]);
     }
 
+    if (opt.thumb && opt.outputFile)
+        opt.thumbFile = nameThumbnail(opt.outputFile);
+
     /* So that we can safely be called again */
     optind = 1;
 }
