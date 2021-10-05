@@ -375,8 +375,8 @@ char* nameThumbnail(char* name)
         extensionLength = fullLength - nameLength;
 
         strlcpy(newName, name, nameLength);
-        strlcat(newName, thumbPrefix, thumbPrefixLength);
-        strlcat(newName, extension, extensionLength);
+        strlcat(newName, thumbPrefix, newNameLength);
+        strlcat(newName, extension, newNameLength);
     } else
         snprintf(newName, newNameLength, "%s-thumb", name);
 
