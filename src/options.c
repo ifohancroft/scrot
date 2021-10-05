@@ -359,7 +359,7 @@ char* nameThumbnail(char* name)
     size_t nameLength = 0;
     size_t extensionLength = 0;
     size_t fullLength = 0;
-    const size_t thumbPrefixLength = "7";
+    const size_t thumbPrefixLength = 7;
     size_t newNameLength = 0;
 
     fullLength = strlen(name);
