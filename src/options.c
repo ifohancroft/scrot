@@ -354,10 +354,9 @@ void optionsParse(int argc, char** argv)
 char* nameThumbnail(char* name)
 {
     char* extension;
-    const char* thumbPrefix = "-thumb";
+    const char* thumbSuffix = "-thumb";
     char* newName;
     size_t nameLength = 0;
-    size_t extensionLength = 0;
     size_t fullLength = 0;
     const size_t thumbPrefixLength = 7;
     size_t newNameLength = 0;
@@ -371,14 +370,13 @@ char* nameThumbnail(char* name)
 
     extension = strrchr(name, '.');
     if (extension) {
-        nameLength = (extension - name) / sizeof(char);
-        extensionLength = fullLength - nameLength;
+        nameLength = (extension - name) / sizeof(char) + 1;
 
         strlcpy(newName, name, nameLength);
-        strlcat(newName, thumbPrefix, newNameLength);
+        strlcat(newName, thumbSuffix, newNameLength);
         strlcat(newName, extension, newNameLength);
     } else
-        snprintf(newName, newNameLength, "%s-thumb", name);
+        snprintf(newName, newNameLength, "%s%s", name, thumbSuffix);
 
     return newName;
 }
