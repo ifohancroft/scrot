@@ -77,9 +77,6 @@ int main(int argc, char** argv)
 
     optionsParse(argc, argv);
 
-    initXAndImlib(opt.display, 0);
-    atexit(uninitXAndImlib);
-
     if (!opt.outputFile) {
         opt.outputFile = strdup("%Y-%m-%d-%H%M%S_$wx$h_scrot.png");
         opt.thumbFile = strdup("%Y-%m-%d-%H%M%S_$wx$h_scrot-thumb.png");
@@ -87,6 +84,9 @@ int main(int argc, char** argv)
         opt.thumbFile = nameThumbnail(opt.outputFile);
         scrotHaveFileExtension(opt.outputFile, &haveExtension);
     }
+
+    initXAndImlib(opt.display, 0);
+    atexit(uninitXAndImlib);
 
     if (opt.focused)
         image = scrotGrabFocused();
